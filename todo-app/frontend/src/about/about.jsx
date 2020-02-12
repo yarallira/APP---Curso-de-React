@@ -1,10 +1,14 @@
-import React , { Component } from 'react'
+import React, { Component } from 'react'
+import PageHeader from '../template/pageHeader'
 
-export default class About extends Component{
-    render(){
-        return(
+export default class About extends Component {
+    render() {
+        return (
             <div>
-                <h1>About</h1>
+                <PageHeader name='Sobre' small="Nós"></PageHeader>
+
+                <h2>Hello Word</h2>
+                <p>Hello Word</p>
             </div>
         )
     }
