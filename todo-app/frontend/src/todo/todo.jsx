@@ -18,16 +18,16 @@ export default class Todo extends Component {
         this.handleRemove = this.handleRemove.bind(this)
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
         this.handleMarkAsPending = this.handleMarkAsPending.bind(this)
-        
+        this.handleClear = this.handleClear.bind(this)
 
         this.refresh()
     }
-
+    // &description__regex é o responsável por fazer a comparação é parecido com o like
     refresh(description = '') {
-        const search = description ? `&description_regex=/${description}/` : ''
+        const search = description ? `&description__regex=/${description}/` : ''
         axios.get(`${URL}?sort=-createdAt${search}`)
-            .then(resp => this.setState({ ...this.state, description, list: resp.data}))
-        console.log(description, 'refresh')
+            .then(resp => this.setState({ ...this.state, description, list: resp.data }))
+      //  console.log(this.state.data)
     }
 
     handleSearch() {
@@ -60,6 +60,10 @@ export default class Todo extends Component {
             .then(resp => this.refresh())
     }
 
+    handleClear() {
+        this.refresh()
+    }
+//Yara
     render() {
         return (
             <div>
@@ -67,7 +71,8 @@ export default class Todo extends Component {
                 <TodoForm description={this.state.description}
                     handleChange={this.handleChange}
                     handleAdd={this.handleAdd}
-                    handleSearch={this.handleSearch} />
+                    handleSearch={this.handleSearch}
+                    handleClear={this.handleClear} />
                 <TodoList list={this.state.list}
                     handleRemove={this.handleRemove}
                     handleMarkAsPending={this.handleMarkAsPending}
