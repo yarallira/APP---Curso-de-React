@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import IconButton from '../template/iconButton'
 import Grid from '../template/grid'
-import { changeDescription } from './todoActions'
+import IconButton from '../template/iconButton'
+import { changeDescription, search } from './todoActions'
 
 class TodoForm extends Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class TodoForm extends Component {
 }
 
 const mapStateToProps = state => ({ description: state.todo.description })
-const mapDispatchToProps = dispatch =>
-    bindActionCreators({ changeDescription }, dispatch)
-export default connect(mapStateToProps , mapDispatchToProps)(TodoForm)
+const mapDispatchToProps = dispath =>
+    bindActionCreators({changeDescription}, dispath)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)
 
